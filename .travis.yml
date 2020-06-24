@@ -1,8 +1,9 @@
 sudo: required
 services:
   - docker
+language: generic   
 before_install:
   - docker build -t frontend -f Dockerfile.dev .
   
 script:
-  - docker run frontend npm run test -- --coverage
+  - docker run -e CI=true frontend npm run test
